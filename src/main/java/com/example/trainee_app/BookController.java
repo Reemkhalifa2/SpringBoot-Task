@@ -12,21 +12,22 @@ import java.util.ArrayList;
 public class BookController {
     private static ArrayList<Book> bookshelf = new ArrayList<>();
 
-    @GetMapping("/add-book")
+    @GetMapping("/addBook")
     public String addBook(@RequestParam int id,
-                          @RequestParam String name) {
-        Book book = new Book(id, name);
+                          @RequestParam String name,
+                          @RequestParam int authorId) {
+        Book book = new Book(id, name,authorId);
         bookshelf.add(book);
         return "Book added successfully!";
     }
 
 
-    @GetMapping("/all-books")
+    @GetMapping("/allBooks")
     public ArrayList<Book> displayBooks(){
         return bookshelf;
     }
 
-    @GetMapping("/find-byid")
+    @GetMapping("/findById")
     public Book findBook(@RequestParam int id){
         for(Book b : bookshelf){
             if(b.getId() == id){
@@ -36,7 +37,7 @@ public class BookController {
         return null;
     }
 
-    @GetMapping("/find-by-name")
+    @GetMapping("/findByName")
     public Book findBookByName(@RequestParam String name){
         for(Book b : bookshelf){
             if(b.getName().equalsIgnoreCase(name) ){
@@ -46,8 +47,7 @@ public class BookController {
         return null;
     }
 
-    @GetMapping("/search-msg")
-
+    @GetMapping("/searchMsg")
     public String search(@RequestParam int id){
         for(Book b : bookshelf){
             if(b.getId() == id){
@@ -57,6 +57,8 @@ public class BookController {
         return "Sorry, that book ID is not available.";
 
     }
+
+
 
 
 
