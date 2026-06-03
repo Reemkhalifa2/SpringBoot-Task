@@ -3,6 +3,16 @@ package com.example.trainee_app;
 public class Book {
     private Integer id;
 
+    public Integer getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(Integer authorId) {
+        this.authorId = authorId;
+    }
+
+    private Integer authorId;
+    private String name;
     public String getName() {
         return name;
     }
@@ -19,10 +29,11 @@ public class Book {
         this.id = id;
     }
 
-    private String name;
-    public Book(Integer id, String name) {
+
+    public Book(Integer id, String name, Integer authorId) {
         this.id = id;
         this.name = name;
+        this.authorId = authorId;
     }
 
 
