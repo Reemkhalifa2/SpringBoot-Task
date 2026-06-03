@@ -3,6 +3,7 @@ package com.example.trainee_app;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.tags.ArgumentAware;
 
 import java.util.ArrayList;
 
@@ -17,6 +18,12 @@ public class BookController {
         Book book = new Book(id, name);
         bookshelf.add(book);
         return "Book added successfully!";
+    }
+
+
+    @GetMapping("/all-books")
+    public ArrayList<Book> displayBooks(){
+        return bookshelf;
     }
 
 
