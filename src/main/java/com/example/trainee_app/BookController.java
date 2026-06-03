@@ -36,6 +36,30 @@ public class BookController {
         return null;
     }
 
+    @GetMapping("/find-by-name")
+    public Book findBookByName(@RequestParam String name){
+        for(Book b : bookshelf){
+            if(b.getName().equalsIgnoreCase(name) ){
+                return b;
+            }
+        }
+        return null;
+    }
+
+    @GetMapping("/search-msg")
+
+    public String search(@RequestParam int id){
+        for(Book b : bookshelf){
+            if(b.getId() == id){
+                return "Found: " + b.getName();
+            }
+        }
+        return "Sorry, that book ID is not available.";
+
+    }
+
+
+
 
 
 }
