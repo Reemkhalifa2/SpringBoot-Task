@@ -26,7 +26,7 @@ public class BookstoreController {
 
     }
 
-    @GetMapping("/check-stock")
+    @GetMapping("/checkStock")
     public String checkStock(@RequestParam int id){
         for(InventoryBook i :  catalog){
             if(i.getId() == id){
@@ -37,5 +37,23 @@ public class BookstoreController {
         }
         return "Bookstore does not carry the title";
     }
+
+    @GetMapping("/checkThreshold")
+    public String checkThreshold(@RequestParam int threshold){
+        StringBuilder report = new StringBuilder();
+        Boolean found = false;
+        for(InventoryBook i :  catalog){
+            if(i.getStockCount() <= threshold){
+                report.append("Title: ")
+                        .append(i.getTitle())
+                        .append(", Stock Count: ")
+                        .append(i.getStockCount())
+                        .append("\n");
+                found = true;
+            }
+        }
+        return found? report.toString():"No books currently need reordering";
+    }
+
 
 }
