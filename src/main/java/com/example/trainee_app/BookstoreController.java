@@ -26,4 +26,16 @@ public class BookstoreController {
 
     }
 
+    @GetMapping("/check-stock")
+    public String checkStock(@RequestParam int id){
+        for(InventoryBook i :  catalog){
+            if(i.getId() == id){
+                return i.getStockCount()>0? "Book is Found "+"\ntitle: "+i.getTitle() +" \n"+"price: "+i.getPrice()
+                        : "SOLD OUT!"
+                        ;
+            }
+        }
+        return "Bookstore does not carry the title";
+    }
+
 }
