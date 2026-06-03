@@ -45,7 +45,7 @@ public class LibraryController {
         }
     }
 
-    @GetMapping("/author-report")
+    @GetMapping("/authorReport")
     public String authorReport(@RequestParam String name) {
 
         Author author = null;
